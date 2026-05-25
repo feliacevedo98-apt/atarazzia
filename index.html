@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ataraxia — Anaximandro II</title>
+  <meta name="description" content="Ataraxia. La serenidad del alma como práctica filosófica. Por Anaximandro II."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void:    #060608;
+      --deep:    #0c0c10;
+      --surface: #13131a;
+      --raise:   #1c1c26;
+      --border:  rgba(255,255,255,.07);
+      --gold:    #c9a84c;
+      --gold2:   #e8cc80;
+      --gold3:   rgba(201,168,76,.15);
+      --ivory:   #f0ead8;
+      --mist:    #8a8a9a;
+      --text:    #ccc8be;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background: var(--void);
+      color: var(--text);
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: .03;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      padding: 1.8rem 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background .4s, padding .4s;
+    }
+
+    nav.scrolled {
+      background: rgba(6,6,8,.92);
+      backdrop-filter: blur(12px);
+      padding: 1.2rem 6%;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand {
+      font-family: 'Cinzel', serif;
+      font-size: .75rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--mist);
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 6% 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* radial glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* top line */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: .4;
+    }
+
+    .hero-symbol {
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: .7;
+      margin-bottom: 2.5rem;
+      animation: fadeIn 1.2s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(4rem, 14vw, 11rem);
+      font-weight: 400;
+      letter-spacing: .15em;
+      color: var(--ivory);
+      line-height: 1;
+      margin-bottom: 2rem;
+      animation: fadeIn 1.2s .2s ease both;
+      text-shadow: 0 0 80px rgba(201,168,76,.15);
+    }
+
+    .hero-divider {
+      width: 4rem;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 2rem;
+      opacity: .5;
+      animation: expand .8s .6s ease both;
+    }
+
+    .hero-sub {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--mist);
+      max-width: 38rem;
+      line-height: 1.7;
+      margin-bottom: 3.5rem;
+      animation: fadeIn 1s .5s ease both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeIn 1s .7s ease both;
+    }
+
+    .btn {
+      font-family: 'Cinzel', serif;
+      font-size: .62rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      text-decoration: none;
+      border-radius: 1px;
+      transition: all .3s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--void);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,.3);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,.4);
+    }
+
+    .btn-ghost:hover {
+      background: var(--gold3);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      animation: fadeIn 1s 1.2s ease both;
+    }
+
+    .scroll-hint span {
+      font-family: 'Cinzel', serif;
+      font-size: .55rem;
+      letter-spacing: .3em;
+      color: var(--mist);
+      opacity: .4;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 3rem;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: pulse 2s infinite;
+    }
+
+    /* ── PHILOSOPHY STRIP ── */
+    .philosophy {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 6%;
+      display: flex;
+      justify-content: center;
+      gap: 5rem;
+      flex-wrap: wrap;
+      background: var(--deep);
+    }
+
+    .phil-item {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all .6s ease;
+    }
+
+    .phil-item.visible { opacity: 1; transform: translateY(0); }
+
+    .phil-num {
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .3em;
+      color: var(--gold);
+      margin-bottom: .5rem;
+    }
+
+    .phil-text {
+      font-family: 'Cormorant', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ivory);
+      opacity: .8;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 7rem 6%; }
+
+    .section-tag {
+      font-family: 'Cinzel', serif;
+      font-size: .58rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      opacity: .8;
+    }
+
+    .section-heading {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 300;
+      color: var(--ivory);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-heading em { font-style: italic; color: var(--gold2); }
+
+    /* ── MANIFESTO ── */
+    .manifesto {
+      background: var(--surface);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .manifesto-quote {
+      position: relative;
+      padding: 3rem;
+      border: 1px solid var(--border);
+      background: var(--raise);
+    }
+
+    .manifesto-quote::before {
+      content: '"';
+      font-family: 'Cormorant', serif;
+      font-size: 8rem;
+      color: var(--gold);
+      opacity: .15;
+      position: absolute;
+      top: -1.5rem;
+      left: 1.5rem;
+      line-height: 1;
+    }
+
+    .manifesto-quote p {
+      font-family: 'Cormorant', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ivory);
+      line-height: 1.7;
+    }
+
+    .manifesto-quote cite {
+      display: block;
+      margin-top: 1.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: .58rem;
+      letter-spacing: .3em;
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .manifesto-text p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── BLOG PREVIEW ── */
+    .blog-section { background: var(--deep); }
+
+    .blog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .blog-link {
+      font-family: 'Cinzel', serif;
+      font-size: .58rem;
+      letter-spacing: .3em;
+      color: var(--gold);
+      text-decoration: none;
+      opacity: .7;
+      transition: opacity .3s;
+    }
+
+    .blog-link:hover { opacity: 1; }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+    }
+
+    .post-card {
+      background: var(--surface);
+      padding: 2.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background .3s;
+      cursor: pointer;
+    }
+
+    .post-card:hover { background: var(--raise); }
+
+    .post-card-date {
+      font-family: 'Cinzel', serif;
+      font-size: .55rem;
+      letter-spacing: .3em;
+      color: var(--gold);
+      opacity: .7;
+    }
+
+    .post-card-title {
+      font-family: 'Cormorant', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--ivory);
+      line-height: 1.3;
+    }
+
+    .post-card-excerpt {
+      font-size: .95rem;
+      color: var(--mist);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .post-card-read {
+      font-family: 'Cinzel', serif;
+      font-size: .55rem;
+      letter-spacing: .25em;
+      color: var(--gold);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .post-card:hover .post-card-read { opacity: 1; }
+
+    .no-posts {
+      grid-column: 1/-1;
+      padding: 4rem;
+      text-align: center;
+      font-family: 'Cormorant', serif;
+      font-style: italic;
+      color: var(--mist);
+      font-size: 1.1rem;
+    }
+
+    /* ── SUSCRIPCIÓN TEASER ── */
+    .sub-teaser {
+      background: var(--void);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sub-teaser::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px; height: 300px;
+      background: radial-gradient(ellipse, rgba(201,168,76,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .sub-teaser .section-heading { margin-bottom: 1rem; }
+
+    .sub-teaser p {
+      font-family: 'Cormorant', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--mist);
+      max-width: 32rem;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .plans-preview {
+      display: flex;
+      justify-content: center;
+      gap: 1px;
+      background: var(--border);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    .plan-mini {
+      background: var(--surface);
+      padding: 2rem 2.5rem;
+      flex: 1;
+      transition: background .3s;
+    }
+
+    .plan-mini:hover { background: var(--raise); }
+
+    .plan-mini-price {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: .3rem;
+    }
+
+    .plan-mini-name {
+      font-family: 'Cormorant', serif;
+      font-size: .9rem;
+      font-style: italic;
+      color: var(--mist);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--void);
+      border-top: 1px solid var(--border);
+      padding: 3rem 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-brand {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .35em;
+      color: var(--gold);
+      opacity: .6;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-family: 'Cinzel', serif;
+      font-size: .55rem;
+      letter-spacing: .2em;
+      color: var(--mist);
+      text-decoration: none;
+      opacity: .5;
+      transition: opacity .3s;
+    }
+
+    .footer-links a:hover { opacity: 1; color: var(--gold); }
+
+    .footer-copy {
+      font-size: .8rem;
+      color: var(--mist);
+      opacity: .3;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes expand {
+      from { width: 0; opacity: 0; }
+      to   { width: 4rem; opacity: .5; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: .6; }
+      50%       { opacity: .2; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .manifesto { grid-template-columns: 1fr; gap: 3rem; }
+      .posts-grid { grid-template-columns: 1fr; }
+      .plans-preview { flex-direction: column; max-width: 280px; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .philosophy { gap: 2.5rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="/index.html" class="nav-brand">Ataraxia</a>
+  <ul class="nav-links">
+    <li><a href="#manifesto">El autor</a></li>
+    <li><a href="/blog/index.html">Blog</a></li>
+    <li><a href="/suscripcion/index.html">Suscripción</a></li>
+    <li><a href="/contacto/index.html">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <p class="hero-symbol">✦ Filosofía · Serenidad · Contemplación ✦</p>
+  <h1 class="hero-title">ATARAXIA</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">La imperturbabilidad del alma como camino hacia la libertad interior. Por <em style="font-style:italic; color:var(--gold2)">Anaximandro II</em>.</p>
+  <div class="hero-ctas">
+    <a href="/blog/index.html" class="btn btn-gold">Leer el blog</a>
+    <a href="/suscripcion/index.html" class="btn btn-ghost">Unirse</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Descender</span>
+    <div class="scroll-line"></div>
+  </div>
+</header>
+
+<!-- ── PHILOSOPHY STRIP ── -->
+<div class="philosophy">
+  <div class="phil-item">
+    <p class="phil-num">I</p>
+    <p class="phil-text">Serenidad del alma</p>
+  </div>
+  <div class="phil-item">
+    <p class="phil-num">II</p>
+    <p class="phil-text">Ausencia de perturbación</p>
+  </div>
+  <div class="phil-item">
+    <p class="phil-num">III</p>
+    <p class="phil-text">Equilibrio interior</p>
+  </div>
+  <div class="phil-item">
+    <p class="phil-num">IV</p>
+    <p class="phil-text">Libertad de la mente</p>
+  </div>
+</div>
+
+<!-- ── MANIFESTO ── -->
+<section class="manifesto" id="manifesto">
+  <div class="manifesto-quote reveal">
+    <p>La mente que no es turbada por el dolor ni impulsada por el deseo, que ha trascendido el miedo y la ansiedad, alcanza la paz más elevada que el ser humano puede conocer.</p>
+    <cite>— Anaximandro II</cite>
+  </div>
+  <div class="manifesto-text reveal">
+    <p class="section-tag">El autor</p>
+    <h2 class="section-heading">Anaximandro <em>II</em></h2>
+    <p>Heredero espiritual del pensamiento presocrático, Anaximandro II explora la intersección entre la filosofía antigua y la psicología contemporánea. Su obra busca recuperar la sabiduría estoica y epicúrea y traducirla en prácticas concretas para la vida moderna.</p>
+    <p>A través de Ataraxia, comparte reflexiones, ensayos y herramientas para quienes buscan cultivar la serenidad no como escape, sino como estado fundamental del ser.</p>
+    <a href="/blog/index.html" class="btn btn-ghost" style="display:inline-block; margin-top:1rem;">Explorar el blog →</a>
+  </div>
+</section>
+
+<!-- ── BLOG PREVIEW ── -->
+<section class="blog-section">
+  <div class="blog-header reveal">
+    <div>
+      <p class="section-tag">Escritos recientes</p>
+      <h2 class="section-heading">Del <em>archivo</em></h2>
+    </div>
+    <a href="/blog/index.html" class="blog-link">Ver todos los escritos →</a>
+  </div>
+  <div class="posts-grid" id="posts-grid">
+    <div class="no-posts" id="no-posts" style="display:none;">
+      <p>Los primeros escritos llegarán pronto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SUSCRIPCIÓN TEASER ── -->
+<section class="sub-teaser">
+  <div class="reveal">
+    <p class="section-tag">Acceso al conocimiento</p>
+    <h2 class="section-heading">Únase al <em>círculo</em></h2>
+    <p>Tres niveles de acceso al pensamiento de Anaximandro II. Elija el camino que corresponde a su grado de compromiso con la búsqueda interior.</p>
+  </div>
+  <div class="plans-preview reveal">
+    <div class="plan-mini">
+      <p class="plan-mini-price">$1</p>
+      <p class="plan-mini-name">Serenidad</p>
+    </div>
+    <div class="plan-mini">
+      <p class="plan-mini-price">$3</p>
+      <p class="plan-mini-name">Equilibrio</p>
+    </div>
+    <div class="plan-mini">
+      <p class="plan-mini-price">$5</p>
+      <p class="plan-mini-name">Ataraxia</p>
+    </div>
+  </div>
+  <a href="/suscripcion/index.html" class="btn btn-gold reveal">Ver planes y beneficios</a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span class="footer-brand">Ataraxia · Anaximandro II</span>
+  <ul class="footer-links">
+    <li><a href="/blog/index.html">Blog</a></li>
+    <li><a href="/suscripcion/index.html">Suscripción</a></li>
+    <li><a href="/contacto/index.html">Contacto</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 Ataraxia. Todos los derechos reservados.</span>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const phils   = document.querySelectorAll('.phil-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  const philObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const items = document.querySelectorAll('.phil-item');
+        items.forEach((el, i) => {
+          setTimeout(() => el.classList.add('visible'), i * 120);
+        });
+        philObs.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  if (phils.length) philObs.observe(phils[0].parentElement);
+
+  // Blog preview
+  (async () => {
+    const grid   = document.getElementById('posts-grid');
+    const noPost = document.getElementById('no-posts');
+
+    function formatDate(str) {
+      const [y, m, d] = (str || '').split('-');
+      if (!y) return '';
+      const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+      return `${parseInt(d)} ${months[parseInt(m)-1]} ${y}`;
+    }
+
+    try {
+      const res = await fetch('/posts/index.json');
+      if (!res.ok) throw new Error();
+      const posts = await res.json();
+      if (!posts.length) throw new Error();
+
+      posts.slice(0, 3).forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'post-card';
+        card.innerHTML = `
+          <p class="post-card-date">${formatDate(p.date)}</p>
+          <p class="post-card-title">${p.title}</p>
+          <p class="post-card-excerpt">${p.excerpt}</p>
+          <span class="post-card-read">Leer escrito →</span>
+        `;
+        card.addEventListener('click', () => window.location.href = '/blog/index.html');
+        grid.appendChild(card);
+      });
+    } catch(e) {
+      noPost.style.display = 'block';
+    }
+  })();
+</script>
+</body>
+</html>

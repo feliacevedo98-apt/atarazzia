@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Suscripción — Ataraxia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--void:#060608;--deep:#0c0c10;--surface:#13131a;--raise:#1c1c26;--border:rgba(255,255,255,.07);--gold:#c9a84c;--gold2:#e8cc80;--gold3:rgba(201,168,76,.12);--ivory:#f0ead8;--mist:#8a8a9a;--text:#ccc8be}
+    html{scroll-behavior:smooth}
+    body{font-family:'EB Garamond',serif;background:var(--void);color:var(--text);overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.03;pointer-events:none;z-index:1000}
+    nav{background:rgba(6,6,8,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:1.4rem 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:500}
+    .nav-brand{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.35em;color:var(--gold);text-decoration:none}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-links a{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.25em;color:var(--mist);text-decoration:none;transition:color .3s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+
+    /* HERO */
+    .sub-hero{padding:7rem 6% 5rem;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+    .sub-hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(201,168,76,.07) 0%,transparent 70%);pointer-events:none}
+    .sub-tag{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.4em;color:var(--gold);opacity:.7;margin-bottom:1.2rem}
+    .sub-hero h1{font-family:'Cormorant',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:var(--ivory);line-height:1.1;margin-bottom:1.2rem}
+    .sub-hero h1 em{font-style:italic;color:var(--gold2)}
+    .sub-hero p{font-family:'Cormorant',serif;font-size:1.15rem;font-style:italic;color:var(--mist);max-width:36rem;margin:0 auto;line-height:1.7}
+
+    /* PLANS */
+    .plans-section{padding:6rem 6%;max-width:1100px;margin:0 auto}
+    .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border);margin-bottom:4rem}
+
+    .plan{background:var(--surface);padding:3rem 2.5rem;display:flex;flex-direction:column;gap:1.5rem;position:relative;transition:background .3s}
+    .plan:hover{background:var(--raise)}
+    .plan.featured{background:var(--raise)}
+    .plan.featured::before{content:'MÁS POPULAR';position:absolute;top:0;left:50%;transform:translateX(-50%);font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.3em;color:var(--void);background:var(--gold);padding:.35rem 1rem}
+
+    .plan-name{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.35em;color:var(--gold);opacity:.8}
+    .plan-price{display:flex;align-items:baseline;gap:.3rem}
+    .plan-amount{font-family:'Cormorant',serif;font-size:4rem;font-weight:300;color:var(--ivory);line-height:1}
+    .plan-period{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:var(--mist);opacity:.6}
+    .plan-divider{width:2rem;height:1px;background:var(--gold);opacity:.4}
+    .plan-desc{font-family:'Cormorant',serif;font-size:1rem;font-style:italic;color:var(--mist);line-height:1.6}
+    .plan-features{list-style:none;display:flex;flex-direction:column;gap:.8rem;flex:1}
+    .plan-features li{font-size:.95rem;color:var(--text);padding-left:1.2rem;position:relative;line-height:1.5}
+    .plan-features li::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:.6}
+
+    .plan-btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;padding:.9rem 1.5rem;text-decoration:none;text-align:center;border:1px solid rgba(201,168,76,.3);color:var(--gold);background:transparent;cursor:pointer;transition:all .3s;display:block}
+    .plan-btn:hover,.plan.featured .plan-btn{background:var(--gold);color:var(--void);border-color:var(--gold)}
+    .plan.featured .plan-btn:hover{background:var(--gold2)}
+
+    /* NOTE */
+    .sub-note{text-align:center;padding:3rem 0;border-top:1px solid var(--border)}
+    .sub-note p{font-family:'Cormorant',serif;font-size:1rem;font-style:italic;color:var(--mist);margin-bottom:.5rem}
+    .sub-note span{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.2em;color:var(--gold);opacity:.5}
+
+    footer{background:var(--void);border-top:1px solid var(--border);padding:2.5rem 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .footer-brand{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.3em;color:var(--gold);opacity:.5}
+    .footer-copy{font-size:.8rem;color:var(--mist);opacity:.3}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:800px){.plans-grid{grid-template-columns:1fr}.nav-links{display:none}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/index.html" class="nav-brand">Ataraxia</a>
+  <ul class="nav-links">
+    <li><a href="/index.html">Inicio</a></li>
+    <li><a href="/blog/index.html">Blog</a></li>
+    <li><a href="/suscripcion/index.html" class="active">Suscripción</a></li>
+    <li><a href="/contacto/index.html">Contacto</a></li>
+  </ul>
+</nav>
+
+<div class="sub-hero">
+  <p class="sub-tag">El círculo interior</p>
+  <h1>Elija su <em>camino</em></h1>
+  <p>Tres niveles de acceso al pensamiento de Anaximandro II. Cada uno, una puerta distinta hacia la misma búsqueda.</p>
+</div>
+
+<div class="plans-section">
+  <div class="plans-grid reveal">
+
+    <!-- PLAN 1 -->
+    <div class="plan">
+      <p class="plan-name">Serenidad</p>
+      <div class="plan-price">
+        <span class="plan-amount">$1</span>
+        <span class="plan-period">/ mes</span>
+      </div>
+      <div class="plan-divider"></div>
+      <p class="plan-desc">El primer paso hacia la imperturbabilidad del alma.</p>
+      <ul class="plan-features">
+        <li>Acceso a todos los artículos del blog</li>
+        <li>Newsletter mensual exclusiva</li>
+        <li>Archivo completo de escritos</li>
+      </ul>
+      <!-- Reemplazar href con el link de Stripe cuando esté configurado -->
+      <a href="#" class="plan-btn">Comenzar — $1/mes</a>
+    </div>
+
+    <!-- PLAN 2 -->
+    <div class="plan featured">
+      <p class="plan-name">Equilibrio</p>
+      <div class="plan-price">
+        <span class="plan-amount">$3</span>
+        <span class="plan-period">/ mes</span>
+      </div>
+      <div class="plan-divider"></div>
+      <p class="plan-desc">Para quienes buscan profundizar con mayor regularidad.</p>
+      <ul class="plan-features">
+        <li>Todo lo del nivel Serenidad</li>
+        <li>Contenido exclusivo para suscriptores</li>
+        <li>Publicaciones con mayor frecuencia</li>
+        <li>Acceso anticipado a nuevos escritos</li>
+      </ul>
+      <!-- Reemplazar href con el link de Stripe cuando esté configurado -->
+      <a href="#" class="plan-btn">Comenzar — $3/mes</a>
+    </div>
+
+    <!-- PLAN 3 -->
+    <div class="plan">
+      <p class="plan-name">Ataraxia</p>
+      <div class="plan-price">
+        <span class="plan-amount">$5</span>
+        <span class="plan-period">/ mes</span>
+      </div>
+      <div class="plan-divider"></div>
+      <p class="plan-desc">El camino completo. Acceso total y diálogo directo.</p>
+      <ul class="plan-features">
+        <li>Todo lo del nivel Equilibrio</li>
+        <li>Acceso completo a todo el contenido</li>
+        <li>Consultas personales con Anaximandro II</li>
+        <li>Prioridad en respuestas y comentarios</li>
+      </ul>
+      <!-- Reemplazar href con el link de Stripe cuando esté configurado -->
+      <a href="#" class="plan-btn">Comenzar — $5/mes</a>
+    </div>
+
+  </div>
+
+  <div class="sub-note reveal">
+    <p>Todos los planes se renuevan mensualmente. Puede cancelar en cualquier momento.</p>
+    <span>Pagos procesados de forma segura por Stripe</span>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-brand">Ataraxia · Anaximandro II</span>
+  <span class="footer-copy">© 2025 Ataraxia.</span>
+</footer>
+
+<script>
+  const reveals=document.querySelectorAll('.reveal');
+  const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:.1});
+  reveals.forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
