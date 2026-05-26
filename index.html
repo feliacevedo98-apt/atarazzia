@@ -603,8 +603,28 @@
 
     @media (max-width: 600px) {
       .nav-links { display: none; }
-      .philosophy { gap: 2.5rem; }
-      footer { flex-direction: column; text-align: center; }
+      nav { padding: 1.2rem 5%; }
+      .hero { padding: 6rem 5% 5rem; }
+      .hero-title { font-size: clamp(2.8rem, 16vw, 5rem); letter-spacing: .05em; word-break: break-word; }
+      .hero-symbol { font-size: .55rem; letter-spacing: .2em; }
+      .hero-sub { font-size: 1rem; }
+      .hero-ctas { flex-direction: column; align-items: center; width: 100%; }
+      .btn { width: 100%; text-align: center; justify-content: center; }
+      .philosophy { gap: 2rem; padding: 2.5rem 5%; flex-wrap: wrap; }
+      .phil-item { flex: 1 1 40%; }
+      section { padding: 4rem 5%; }
+      .manifesto-quote { padding: 2rem 1.5rem; }
+      .manifesto-quote p { font-size: 1.15rem; }
+      .blog-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .plans-preview { max-width: 100%; }
+      .plan-mini { padding: 1.5rem; }
+      footer { flex-direction: column; text-align: center; gap: 1rem; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+      .scroll-hint { display: none; }
+    }
+
+    @media (max-width: 380px) {
+      .hero-title { font-size: clamp(2.2rem, 14vw, 3.5rem); letter-spacing: .02em; }
     }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
