@@ -1,7 +1,8 @@
 ---
-title: "La imperturbabilidad como práctica"
-date: 2025-01-01
-excerpt: "La ataraxia no es la ausencia de sensación, sino la maestría sobre la respuesta. El primer escrito del archivo de Anaximandro II."
+title: La imperturbabilidad como práctica
+date: 2026-05-25
+excerpt: La ataraxia no es la ausencia de sensación, sino la maestría sobre la
+  respuesta. El primer escrito del archivo de Anaximandro II.
 ---
 
 La mente perturbada no es el estado natural del ser humano. Es una condición adquirida, cultivada por años de reactividad inconsciente ante el mundo.
