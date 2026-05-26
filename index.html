@@ -605,7 +605,7 @@
       .nav-links { display: none; }
       nav { padding: 1.2rem 5%; }
       .hero { padding: 6rem 5% 5rem; }
-      .hero-title { font-size: clamp(2.8rem, 16vw, 5rem); letter-spacing: .05em; word-break: break-word; }
+      .hero-title { font-size: clamp(2rem, 11.5vw, 5rem); letter-spacing: .03em; white-space: nowrap; overflow: hidden; text-overflow: clip; }
       .hero-symbol { font-size: .55rem; letter-spacing: .2em; }
       .hero-sub { font-size: 1rem; }
       .hero-ctas { flex-direction: column; align-items: center; width: 100%; }
@@ -623,8 +623,8 @@
       .scroll-hint { display: none; }
     }
 
-    @media (max-width: 380px) {
-      .hero-title { font-size: clamp(2.2rem, 14vw, 3.5rem); letter-spacing: .02em; }
+    @media (max-width: 420px) {
+      .hero-title { font-size: clamp(1.7rem, 9.5vw, 2.8rem); letter-spacing: 0; }
     }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
